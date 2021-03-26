@@ -13,3 +13,9 @@ after_success:
   - docker build -t juniorbezerra/multi-nginx ./nginx
   - docker build -t juniorbezerra/multi-server ./server
   - docker build -t juniorbezerra/multi-worker ./worker
+
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push juniorbezerra/multi-client
+  - docker push juniorbezerra/multi-nginx
+  - docker push juniorbezerra/multi-server
+  - docker push juniorbezerra/multi-worker
