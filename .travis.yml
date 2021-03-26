@@ -3,20 +3,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t juniorbezerra/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t juniorbezerra01/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true juniorbezerra/react-test npm test
+  - docker run -e CI=true juniorbezerra01/react-test npm test
 
 after_success:
-  - docker build -t juniorbezerra/multi-client ./client
-  - docker build -t juniorbezerra/multi-nginx ./nginx
-  - docker build -t juniorbezerra/multi-server ./server
-  - docker build -t juniorbezerra/multi-worker ./worker
+  - docker build -t juniorbezerra01/multi-client ./client
+  - docker build -t juniorbezerra01/multi-nginx ./nginx
+  - docker build -t juniorbezerra01/multi-server ./server
+  - docker build -t juniorbezerra01/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push juniorbezerra/multi-client
-  - docker push juniorbezerra/multi-nginx
-  - docker push juniorbezerra/multi-server
-  - docker push juniorbezerra/multi-worker
+  - docker push juniorbezerra01/multi-client
+  - docker push juniorbezerra01/multi-nginx
+  - docker push juniorbezerra01/multi-server
+  - docker push juniorbezerra01/multi-worker
