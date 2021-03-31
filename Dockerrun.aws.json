@@ -1,0 +1,36 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [
+        {
+            "name": "client",
+            "image": "juniorbezerra01/multi-client",
+            "hostname": "client",
+            "essencial": false
+        },
+        {
+            "name": "server",
+            "image": "juniorbezerra01/multi-server",
+            "hostname": "api",
+            "essencial": false
+        },
+        {
+            "name": "worker",
+            "image": "juniorbezerra01/multi-worker",
+            "hostname": "worker",
+            "essencial": false
+        },
+        {
+            "name": "nginx",
+            "image": "juniorbezerra01/multi-nginx",
+            "hostname": "nginx",
+            "essencial": true,
+            "portMappings": [
+                {
+                    "hostPort:": 80,
+                    "containerPort": 80
+                }
+            ],
+            "links": ["client", "server"]
+        }
+    ]
+}
