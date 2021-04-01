@@ -1,4 +1,6 @@
 sudo: required
+language: generic
+
 services: 
   - docker
 
@@ -23,11 +25,12 @@ after_success:
 
 deploy:
   provider: elasticbeanstalk
-  region: 'us-east-2'
-  app: 'multi-docker'
-  env: 'MultiDocker-env'
-  bucket_name: 'elasticbeanstalk-us-east-2-861493268032'
-  bucket_path: 'docker-multi'
+  region: us-east-2
+  app: "multi-docker"
+  env: "Multidocker-env"
+  bucket_name: "elasticbeanstalk-us-east-2-861493268032"
+  bucket_path: "docker-multi"
+  edge: true # opt in to dpl v2
   on:
     branch: main
   access_key_id: $AWS_ACCESS_KEY
